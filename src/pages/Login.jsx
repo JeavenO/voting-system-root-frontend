@@ -24,36 +24,33 @@ function Login() {
     }
   };
 
-  // Styles defined as objects for "Expensive" feel
   const styles = {
     container: {
       minHeight: "100vh",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+      background: "#050505",
       padding: "20px",
     },
     card: {
-      background: "rgba(255, 255, 255, 0.05)",
+      background: "rgba(255, 255, 255, 0.03)",
       backdropFilter: "blur(20px)",
       padding: "40px",
       borderRadius: "30px",
-      border: "1px solid rgba(255, 255, 255, 0.1)",
+      border: "1px solid rgba(255, 255, 255, 0.08)",
       width: "100%",
       maxWidth: "400px",
-      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
     },
     input: {
       width: "100%",
       padding: "16px",
-      background: "rgba(255, 255, 255, 0.05)",
-      border: "1px solid rgba(255, 255, 255, 0.1)",
+      background: "rgba(255, 255, 255, 0.03)",
+      border: "1px solid #ffffff10",
       borderRadius: "12px",
       color: "white",
       marginBottom: "15px",
       outline: "none",
-      fontSize: "16px",
     },
     button: {
       width: "100%",
@@ -62,10 +59,9 @@ function Login() {
       color: "white",
       border: "none",
       borderRadius: "12px",
-      fontSize: "16px",
       fontWeight: "bold",
       cursor: "pointer",
-      transition: "all 0.3s ease",
+      transition: "0.3s",
     },
   };
 
@@ -78,13 +74,12 @@ function Login() {
             fontSize: "2rem",
             textAlign: "center",
             marginBottom: "30px",
-            fontWeight: "300",
+            fontWeight: 200,
             letterSpacing: "2px",
           }}
         >
           VOTE<span style={{ fontWeight: "bold", color: "#818cf8" }}>PRO</span>
         </h2>
-
         <form onSubmit={handleLogin}>
           <input
             type="text"
@@ -102,18 +97,28 @@ function Login() {
               setCredentials({ ...credentials, password: e.target.value })
             }
           />
-          <button
-            type="submit"
-            style={styles.button}
-            onMouseOver={(e) => (e.target.style.background = "#6366f1")}
-            onMouseOut={(e) => (e.target.style.background = "#4f46e5")}
-          >
+          <button type="submit" style={styles.button}>
             SIGN IN
           </button>
         </form>
+
+        <div style={{ marginTop: "20px", textAlign: "center" }}>
+          <p style={{ color: "#64748b", fontSize: "0.9rem" }}>
+            Don't have an account?{" "}
+            <span
+              onClick={() => navigate("/register")}
+              style={{
+                color: "#818cf8",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              Create one
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
 }
-
 export default Login;

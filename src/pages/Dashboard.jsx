@@ -5,11 +5,6 @@ function Dashboard() {
   const username = localStorage.getItem("username");
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
-
   const styles = {
     page: {
       minHeight: "100vh",
@@ -62,7 +57,10 @@ function Dashboard() {
           PORTAL
         </h1>
         <button
-          onClick={handleLogout}
+          onClick={() => {
+            localStorage.clear();
+            navigate("/login");
+          }}
           style={{
             background: "transparent",
             color: "#94a3b8",

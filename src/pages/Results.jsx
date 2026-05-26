@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api/axiosConfig";
 
 function Results() {
+  const navigate = useNavigate();
   const [results, setResults] = useState({});
-
   useEffect(() => {
     api.get("/results").then((res) => setResults(res.data));
   }, []);
-
-  // Calculate total votes for percentage logic
   const totalVotes = Object.values(results).reduce((a, b) => a + b, 0);
+
+  const backBtn = {
+    position: "absolute",
+    top: "40px",
+    left: "40px",
+    background: "transparent",
+    border: "1px solid #ffffff10",
+    color: "#94a3b8",
+    padding: "8px 16px",
+    borderRadius: "20px",
+    cursor: "pointer",
+    fontSize: "0.8rem",
+  };
 
   return (
     <div
@@ -21,9 +33,12 @@ function Results() {
         maxWidth: "600px",
         margin: "auto",
         fontFamily: "sans-serif",
+        position: "relative",
       }}
     >
-      {/* Live Pulse Header */}
+      <button onClick={() => navigate(-1)} style={backBtn}>
+        ← BACK
+      </button>
       <div style={{ textAlign: "center", marginBottom: "40px" }}>
         <h2 style={{ fontWeight: 200, display: "inline-block" }}>LIVE TALLY</h2>
         <span
@@ -34,13 +49,11 @@ function Results() {
             background: "#22c55e",
             borderRadius: "50%",
             marginLeft: "10px",
-            boxShadow: "0 0 8px #22c55e",
             animation: "pulse 2s infinite",
           }}
         ></span>
       </div>
 
-      {/* Results with Progress Bars */}
       {Object.entries(results).map(([name, count]) => {
         const percentage = totalVotes > 0 ? (count / totalVotes) * 100 : 0;
         return (
@@ -57,7 +70,6 @@ function Results() {
                 {count} Votes ({percentage.toFixed(1)}%)
               </span>
             </div>
-            {/* Progress Bar Track */}
             <div
               style={{
                 width: "100%",
@@ -67,7 +79,6 @@ function Results() {
                 overflow: "hidden",
               }}
             >
-              {/* Progress Bar Fill */}
               <div
                 style={{
                   width: `${percentage}%`,
@@ -81,17 +92,8 @@ function Results() {
           </div>
         );
       })}
-
-      {/* Pulse Animation Definition */}
-      <style>{`
-        @keyframes pulse {
-          0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-          70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-          100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-      `}</style>
+      <style>{`@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }`}</style>
     </div>
   );
 }
-
 export default Results;

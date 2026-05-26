@@ -31,6 +31,18 @@ function Register() {
     color: "white",
     outline: "none",
   };
+  const backBtn = {
+    position: "absolute",
+    top: "40px",
+    left: "40px",
+    background: "transparent",
+    border: "1px solid #ffffff10",
+    color: "#94a3b8",
+    padding: "8px 16px",
+    borderRadius: "20px",
+    cursor: "pointer",
+    fontSize: "0.8rem",
+  };
 
   return (
     <div
@@ -41,8 +53,13 @@ function Register() {
         alignItems: "center",
         justifyContent: "center",
         padding: "20px",
+        position: "relative",
       }}
     >
+      <button onClick={() => navigate("/login")} style={backBtn}>
+        ← BACK
+      </button>
+
       <div
         style={{
           background: "rgba(255,255,255,0.03)",
