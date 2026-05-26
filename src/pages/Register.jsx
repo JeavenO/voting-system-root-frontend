@@ -1,51 +1,109 @@
 import React, { useState } from "react";
-import api from "../api/axiosConfig"; // Importing the configured Axios instance
+import { useNavigate } from "react-router-dom";
+import api from "../api/axiosConfig";
 
 function Register() {
-  // useState manages the input values for username and password
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+  const navigate = useNavigate();
 
-  // Function to handle form submission
   const handleRegister = async (e) => {
-    e.preventDefault(); // Stop the page from refreshing
-
+    e.preventDefault();
     try {
-      // Send the user data to the backend '/register' endpoint
-      const response = await api.post("/register", formData);
-
-      // Notify the user of a successful registration
+      await api.post("/register", formData);
       alert("Registration successful! Please log in.");
-    } catch (error) {
-      // Handle and display error messages if registration fails
-      alert(
-        "Registration failed: " +
-          (error.response?.data?.message || "Try again"),
-      );
+      navigate("/login");
+    } catch (e) {
+      alert("Registration failed");
     }
   };
 
+  const inputStyle = {
+    width: "100%",
+    padding: "15px",
+    marginBottom: "15px",
+    background: "rgba(255,255,255,0.03)",
+    border: "1px solid #ffffff10",
+    borderRadius: "12px",
+    color: "white",
+    outline: "none",
+  };
+
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Create an Account</h2>
-
-      {/* Username input */}
-      <input
-        type="text"
-        placeholder="Username"
-        onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-      />
-
-      {/* Password input */}
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-      />
-
-      {/* Submit button */}
-      <button type="submit">Register</button>
-    </form>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#050505",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          background: "rgba(255,255,255,0.03)",
+          padding: "50px",
+          borderRadius: "30px",
+          border: "1px solid #ffffff08",
+          width: "350px",
+        }}
+      >
+        <h2
+          style={{
+            color: "white",
+            textAlign: "center",
+            marginBottom: "30px",
+            fontWeight: 200,
+          }}
+        >
+          CREATE{" "}
+          <span style={{ fontWeight: "bold", color: "#818cf8" }}>ACCOUNT</span>
+        </h2>
+        <form onSubmit={handleRegister}>
+          <input
+            placeholder="Username"
+            style={inputStyle}
+            onChange={(e) =>
+              setFormData({ ...formData, username: e.target.value })
+            }
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            style={inputStyle}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            style={inputStyle}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+          />
+          <button
+            style={{
+              width: "100%",
+              padding: "15px",
+              background: "#4f46e5",
+              border: "none",
+              borderRadius: "12px",
+              color: "white",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            REGISTER
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
-
 export default Register;
