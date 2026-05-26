@@ -1,4 +1,4 @@
-VotePro Portal
+# VotePro Portal
 
 VotePro is a modern, secure, and professional-grade electronic voting application. It provides a sleek, "Premium Dark" user interface designed for high-end executive functionality, ensuring a seamless and secure voting experience.
 
