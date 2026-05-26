@@ -1,16 +1,50 @@
-# React + Vite
+VotePro Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+VotePro is a modern, secure, and professional-grade electronic voting application. It provides a sleek, "Premium Dark" user interface designed for high-end executive functionality, ensuring a seamless and secure voting experience.
 
-Currently, two official plugins are available:
+##  Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Premium Dark UI:** A fully customized, glassmorphism-inspired aesthetic using inline CSS-in-JS for maximum performance and build reliability.
+* **Secure Authentication Guard:** Integrated `PrivateRoute` logic ensures that only authenticated users can access the dashboard, voting, and results modules.
+* **Real-time Analytics:** The Results module features live pulse indicators and dynamic progress bars for instant, clear data visualization.
+* **Seamless Navigation:** Intuitive flow with "Back" navigation and clear entry points for new user registration.
+* **Interactive UX:** Responsive design with subtle hover animations and professional success modals for a refined interaction feel.
 
-## React Compiler
+##  Technical Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Frontend:** React, React Router
+* **State Management:** LocalStorage (for session persistence)
+* **Networking:** Axios (with custom configuration)
+* **Styling:** CSS-in-JS (Inline Object Styling)
 
-## Expanding the ESLint configuration
+##  Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+* Node.js installed
+* An active backend API (as configured in `api/axiosConfig.js`)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd frontend
+Install dependencies:
+
+Bash
+npm install
+Run the application:
+
+Bash
+npm run dev
+ Project Architecture
+The application is structured to ensure security and maintainability:
+
+pages/: Contains the core views (Login, Register, Dashboard, Voting, Results).
+
+components/: Contains reusable logic and UI guards (e.g., PrivateRoute.jsx).
+
+api/: Centralized API configuration for consistent server communication.
+
+ License
+This project is proprietary and intended for secure organizational voting purposes.
